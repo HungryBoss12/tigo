@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stoic Strike - CS 1.6 Philosophical Clone</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: 'Georgia', serif;
+        background: #1a1a2e;
+        color: #d4af37;
+        overflow: hidden;
+      }
+      
+      #root {
+        width: 100vw;
+        height: 100vh;
+      }
+      
+      .loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+      
+      .loading-title {
+        font-size: 3rem;
+        color: #d4af37;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        margin-bottom: 1rem;
+      }
+      
+      .loading-quote {
+        font-size: 1.2rem;
+        color: #a8a8a8;
+        font-style: italic;
+        max-width: 600px;
+        text-align: center;
+        line-height: 1.6;
+      }
+      
+      .loading-bar {
+        width: 300px;
+        height: 4px;
+        background: #333;
+        border-radius: 2px;
+        margin-top: 2rem;
+        overflow: hidden;
+      }
+      
+      .loading-progress {
+        height: 100%;
+        background: linear-gradient(90deg, #d4af37, #f4e4bc);
+        transition: width 0.3s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
