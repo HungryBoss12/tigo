@@ -1,0 +1,335 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Georgia', serif;
+  background: #1a1a2e;
+  color: #d4af37;
+  overflow: hidden;
+  user-select: none;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Stoic Color Palette */
+:root {
+  --gold: #d4af37;
+  --gold-light: #f4e4bc;
+  --marble-white: #f5f5f5;
+  --marble-gray: #8b8b8b;
+  --deep-blue: #1a1a2e;
+  --navy: #16213e;
+  --bronze: #cd7f32;
+  --olive: #808000;
+}
+
+/* UI Components */
+.stoic-ui {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.stoic-hud {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+.stoic-panel {
+  background: linear-gradient(135deg, rgba(26, 26, 46, 0.9) 0%, rgba(22, 33, 62, 0.9) 100%);
+  border: 2px solid var(--gold);
+  border-radius: 8px;
+  padding: 15px 25px;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.stoic-stat {
+  font-size: 1.5rem;
+  color: var(--gold);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  margin: 5px 0;
+}
+
+.stoic-stat-label {
+  font-size: 0.9rem;
+  color: var(--marble-gray);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.stoic-crosshair {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 101;
+}
+
+.stoic-crosshair::before,
+.stoic-crosshair::after {
+  content: '';
+  position: absolute;
+  background: var(--gold);
+  box-shadow: 0 0 5px rgba(212, 175, 55, 0.8);
+}
+
+.stoic-crosshair::before {
+  width: 20px;
+  height: 2px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.stoic-crosshair::after {
+  width: 2px;
+  height: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.stoic-menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--deep-blue) 0%, var(--navy) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  pointer-events: all;
+  z-index: 1000;
+}
+
+.stoic-title {
+  font-size: 4rem;
+  color: var(--gold);
+  text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+  margin-bottom: 1rem;
+  font-weight: bold;
+  letter-spacing: 4px;
+}
+
+.stoic-subtitle {
+  font-size: 1.5rem;
+  color: var(--marble-gray);
+  font-style: italic;
+  margin-bottom: 3rem;
+  text-align: center;
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+.stoic-button {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--bronze) 100%);
+  border: none;
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  color: var(--deep-blue);
+  font-weight: bold;
+  cursor: pointer;
+  margin: 10px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+}
+
+.stoic-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+}
+
+.stoic-quote {
+  position: absolute;
+  bottom: 20px;
+  font-style: italic;
+  color: var(--marble-gray);
+  font-size: 1rem;
+  text-align: center;
+  width: 100%;
+}
+
+.stoic-killfeed {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.stoic-kill-item {
+  background: linear-gradient(135deg, rgba(26, 26, 46, 0.9) 0%, rgba(22, 33, 62, 0.9) 100%);
+  border-left: 3px solid var(--gold);
+  padding: 10px 15px;
+  border-radius: 4px;
+  color: var(--marble-white);
+  font-size: 0.9rem;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.stoic-scoreboard {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(22, 33, 62, 0.95) 100%);
+  border: 2px solid var(--gold);
+  border-radius: 8px;
+  padding: 20px;
+  min-width: 400px;
+  pointer-events: all;
+  z-index: 200;
+}
+
+.stoic-scoreboard h2 {
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+.stoic-score-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+  color: var(--marble-white);
+}
+
+.stoic-score-row:last-child {
+  border-bottom: none;
+}
+
+.stoic-team-ct {
+  color: #5b9bd5;
+}
+
+.stoic-team-t {
+  color: #d68a59;
+}
+
+/* Loading Screen */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--deep-blue) 0%, var(--navy) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loading-title {
+  font-size: 3rem;
+  color: var(--gold);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  margin-bottom: 1rem;
+}
+
+.loading-quote {
+  font-size: 1.2rem;
+  color: var(--marble-gray);
+  font-style: italic;
+  max-width: 600px;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.loading-bar {
+  width: 300px;
+  height: 4px;
+  background: #333;
+  border-radius: 2px;
+  margin-top: 2rem;
+  overflow: hidden;
+}
+
+.loading-progress {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  transition: width 0.3s ease;
+}
+
+/* Weapon Display */
+.stoic-weapon {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  text-align: right;
+  pointer-events: none;
+}
+
+.stoic-weapon-name {
+  font-size: 1.8rem;
+  color: var(--gold);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.stoic-ammo {
+  font-size: 1.2rem;
+  color: var(--marble-gray);
+  margin-top: 5px;
+}
+
+/* Round End Screen */
+.stoic-round-end {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+  z-index: 300;
+}
+
+.stoic-round-result {
+  font-size: 3rem;
+  color: var(--gold);
+  text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+  margin-bottom: 1rem;
+}
+
+.stoic-round-reason {
+  font-size: 1.5rem;
+  color: var(--marble-white);
+}
