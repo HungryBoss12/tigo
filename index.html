@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Counter-Strike 1.6 Clone (Browser Prototype)</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="layout">
+      <header class="hud">
+        <div class="hud-group">
+          <span class="label">Round</span>
+          <span id="round">1</span>
+        </div>
+        <div class="hud-group">
+          <span class="label">Timer</span>
+          <span id="timer">1:30</span>
+        </div>
+        <div class="hud-group">
+          <span class="label">Team</span>
+          <span id="team">CT</span>
+        </div>
+        <div class="hud-group">
+          <span class="label">Money</span>
+          <span id="money">$800</span>
+        </div>
+        <div class="hud-group">
+          <span class="label">Health</span>
+          <span id="health">100</span>
+        </div>
+        <div class="hud-group">
+          <span class="label">Ammo</span>
+          <span id="ammo">30 / 90</span>
+        </div>
+      </header>
+
+      <canvas id="game" width="1000" height="560" aria-label="game canvas"></canvas>
+
+      <section class="controls">
+        <h1>Counter-Strike 1.6 Inspired Browser Clone</h1>
+        <p>
+          Move with <strong>WASD</strong>, aim with mouse, shoot with <strong>Left Click</strong>,
+          reload with <strong>R</strong>, buy menu with <strong>B</strong>.
+        </p>
+        <p>
+          Objective: eliminate all Terrorists before round time ends. This is a compact browser
+          prototype inspired by CS 1.6 mechanics.
+        </p>
+      </section>
+
+      <aside id="buyMenu" class="buy-menu hidden">
+        <h2>Buy Menu</h2>
+        <button data-gun="glock">Glock ($400)</button>
+        <button data-gun="mp5">MP5 ($1500)</button>
+        <button data-gun="ak47">AK-47 ($2700)</button>
+        <button data-gun="m4a1">M4A1 ($3100)</button>
+        <button data-gun="awp">AWP ($4750)</button>
+      </aside>
+    </main>
+
+    <script src="game.js"></script>
+  </body>
+</html>
